@@ -96,7 +96,7 @@ public class icsFileFieldsCreator {
 	//set classification
 	public String setClassification(String classification)
 	{
-		String result = "ClASS:" + classification;
+		String result = "CLASS:" + classification;
 		return result;
 
 	}
