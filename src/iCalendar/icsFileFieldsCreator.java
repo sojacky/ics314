@@ -12,8 +12,6 @@ public class icsFileFieldsCreator {
 
 	public icsFileFieldsCreator(){};
 
-
-
 	//set the UID 
 	public String setUIDString()
 	{
@@ -70,6 +68,7 @@ public class icsFileFieldsCreator {
 
 	}
 
+	//set timezone
 	public String hawaiiStandardTimeCreator()
 	{
 		String timeZoneBlock = 
@@ -93,25 +92,21 @@ public class icsFileFieldsCreator {
 						"END:VTIMEZONE";
 		return timeZoneBlock;
 	}
-	
+
 	//set classification
 	public String setClassification(String classification)
 	{
 		String result = "ClASS:" + classification;
 		return result;
-	
+
 	}
-	
-	
+
+	//set geographic position
 	public String setGeographicPosition(String latitude, String longitude)
 	{
 		return "GEO:" + latitude + ";" + longitude;
- 	}
-	
-	
-
+	}
 
 }
 
-//DTSTART;TZID=Pacific/Honolulu:20150518T150000
-//DTEND;TZID=Pacific/Honolulu:20150518T160000
+
