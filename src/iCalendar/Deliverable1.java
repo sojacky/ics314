@@ -47,7 +47,7 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 
 			//prompt user for start date
-			System.out.println("Please enter a start date(YYYY/MM/DD)");
+			System.out.println("Please enter a start date(YYYYMMDD)");
 			String startDate = scan.nextLine();
 			//prompt user for start time
 			System.out.println("Please enter a start time(HHMMSS)");
@@ -56,7 +56,7 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 
 			//prompt user for end date
-			System.out.println("Please enter an end date(YYYY/MM/DD)");
+			System.out.println("Please enter an end date(YYYYMMDD)");
 			String endDate = scan.nextLine();
 
 			//prompt user for end time
