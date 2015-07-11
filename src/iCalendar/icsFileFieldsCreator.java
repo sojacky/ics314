@@ -16,7 +16,7 @@ public class icsFileFieldsCreator {
 	public String setUIDString()
 	{
 		String UID = "";
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		DateFormat dateFormat = new SimpleDateFormat("YYYYMMDDHHMMSS");
 		cal = Calendar.getInstance();
 		String date = dateFormat.format(cal.getTime());
 		UID = "UID:" + date + "@mpsommer";
@@ -28,7 +28,7 @@ public class icsFileFieldsCreator {
 	public String setDateStampString()
 	{
 		String dtStamp = "";
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		DateFormat dateFormat = new SimpleDateFormat("YYYYMMDD");
 		Date date = new Date();
 		dtStamp = "DTSTAMP:" + dateFormat.format(date);
 		return dtStamp;	
