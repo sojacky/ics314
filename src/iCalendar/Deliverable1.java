@@ -16,6 +16,7 @@ public class Deliverable1 {
 		File file;
 		icsFileFieldsCreator fields = new icsFileFieldsCreator();
 		Scanner scan = new Scanner(System.in);
+		InputValidator inputCheck = new InputValidator();
 
 		try {
 
@@ -49,6 +50,7 @@ public class Deliverable1 {
 			//prompt user for start date
 			System.out.println("Please enter a start date(YYYYMMDD)");
 			String startDate = scan.nextLine();
+			System.out.println(inputCheck.isValidDateString(startDate));
 			//prompt user for start time
 			System.out.println("Please enter a start time(HHMMSS)");
 			String startTime = scan.nextLine();
