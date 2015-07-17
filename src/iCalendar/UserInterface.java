@@ -14,13 +14,13 @@ public class UserInterface {
 
 	public String startDatePrompt()
 	{
-		System.out.println("Please enter a start date(dd/mm/yyyy)");
+		System.out.println("Please enter a start date(mm/dd/yyyy)");
 		String startDate = scan.nextLine();
 		
 		while(!inputCheck.isValidDateString(startDate))
 		{
 			System.out.print("Invalid start date, ");
-			System.out.println("Please enter a start date(dd/mm/yyyy)");
+			System.out.println("Please enter a start date(mm/dd/yyyy)");
 			startDate = scan.nextLine();
 		}
 		return startDate;
@@ -28,13 +28,13 @@ public class UserInterface {
 	
 	public String endDatePrompt()
 	{
-		System.out.println("Please enter an end date(dd/mm/yyyy)");
+		System.out.println("Please enter an end date(mm/dd/yyyy)");
 		String endDate = scan.nextLine();
 		
 		while(!inputCheck.isValidDateString(endDate))
 		{
 			System.out.print("Invalid end date, ");
-			System.out.println("Please enter an end date(dd/mm/yyyy)");
+			System.out.println("Please enter an end date(mm/dd/yyyy)");
 		    endDate = scan.nextLine();
 		}
 		return endDate;

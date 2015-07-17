@@ -39,7 +39,8 @@ public class icsFileFieldsCreator {
 	public String setStartDateString(String startDate, String startTime)
 	{
 		String dtStart = "";
-		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + startDate + "T" + startTime;
+		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
+		System.out.println("dtStart = " + dtStart ) ;
 		return dtStart;
 	}
 
@@ -47,7 +48,8 @@ public class icsFileFieldsCreator {
 	public String setEndDateString(String endDate, String endTime)
 	{
 		String dtEnd = "";
-		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + endDate + "T" + endTime;
+		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
+		System.out.println("endDate = " + dtEnd);
 		return dtEnd;
 	}
 
@@ -105,6 +107,11 @@ public class icsFileFieldsCreator {
 	public String setGeographicPosition(String latitude, String longitude)
 	{
 		return "GEO:" + latitude + ";" + longitude;
+	}
+	
+	private String dateFormatter(String date)
+	{
+		return date.substring(6, date.length()) + date.substring(0,2) + date.substring(3,5);
 	}
 
 }
