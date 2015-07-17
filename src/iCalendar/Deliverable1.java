@@ -50,13 +50,13 @@ public class Deliverable1 {
 
 			//prompt user for start date
 			String startDate = prompt.startDatePrompt();
-			
+
 			//prompt user for end date
 			String endDate = prompt.endDatePrompt();
-			
+
 			//prompt user for start time
 			String startTime = prompt.startTimePrompt();	
-			
+
 			//write start date and time to file
 			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
 			bufferedWriter.newLine();
@@ -65,7 +65,7 @@ public class Deliverable1 {
 
 			//prompt user for end time
 			String endTime = prompt.endTimePrompt();
-		
+
 			//write end date and time to file
 			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
 			bufferedWriter.newLine();
@@ -76,7 +76,7 @@ public class Deliverable1 {
 
 			//location
 			String location = prompt.locationPrompt();
-			
+
 			//write location to file
 			bufferedWriter.write(fields.setLocationString(location));
 			bufferedWriter.newLine();	
@@ -90,17 +90,23 @@ public class Deliverable1 {
 			}
 
 			//geographic position
-			System.out.println("Would you like to enter a geographic position? type yes or no");
-			String decision = scan.nextLine();
-			if(decision.equalsIgnoreCase("yes"))
+			//			System.out.println("Would you like to enter a geographic position? type yes or no");
+			//			String decision = scan.nextLine();
+			//			if(decision.equalsIgnoreCase("yes"))
+			//			{
+			//				System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
+			//				String latitude = scan.nextLine();
+			//				System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
+			//				String longitude = scan.nextLine();
+
+			if(prompt.enterGeographicPosition())
 			{
-				System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
-				String latitude = scan.nextLine();
-				System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
-				String longitude = scan.nextLine();
-				bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
-				bufferedWriter.newLine();	
+			String latitude = prompt.latitudinalPrompt();
+			String longitude = prompt.longitudinalPrompt();
+			bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
+			bufferedWriter.newLine();
 			}
+			//			}
 
 			bufferedWriter.write("END:VEVENT");
 			bufferedWriter.newLine();

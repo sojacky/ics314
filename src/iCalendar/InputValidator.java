@@ -58,6 +58,25 @@ public class InputValidator {
 		}
 	}
 
+	public boolean isValidGeographicPosition(String position)
+	{
+		boolean isValidPosition = false;
+		if(position.length() < 11 && isInteger(position.substring(1,3)) && isInteger(position.substring(4,position.length())) &&
+				position.substring(3,4).equals(".") &&
+				position.substring(4,position.length()).length() < 7 
+				&& (position.substring(0,1).equals("+") || position.substring(0,1).equals("-")))
+		{
+			isValidPosition = true;
+		}	
+		
+		System.out.println("str = " + position.substring(0,1));
+		System.out.println("str = " + position.substring(1,3));
+		System.out.println("str = " + position.substring(4,position.length()));
+		System.out.println("str = " + position.substring(3,4));
+		System.out.println(isValidPosition);
+		
+		return isValidPosition;
+	}
 
 }
 
