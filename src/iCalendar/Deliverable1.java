@@ -16,7 +16,8 @@ public class Deliverable1 {
 		File file;
 		icsFileFieldsCreator fields = new icsFileFieldsCreator();
 		Scanner scan = new Scanner(System.in);
-		InputValidator inputCheck = new InputValidator();
+		UserInterface prompt = new UserInterface();
+		//InputValidator inputCheck = new InputValidator();
 
 		try {
 
@@ -48,22 +49,24 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 
 			//prompt user for start date
-			System.out.println("Please enter a start date(YYYYMMDD)");
-			String startDate = scan.nextLine();
-			System.out.println(inputCheck.isValidDateString(startDate));
+			String startDate = prompt.startDatePrompt();
+			
+			//prompt user for end date
+			String endDate = prompt.endDatePrompt();
+			
 			//prompt user for start time
-			System.out.println("Please enter a start time(HHMMSS)");
-			String startTime = scan.nextLine();
+			String startTime = prompt.startTimePrompt();	
+			
+			//write start date and time to file
 			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
 			bufferedWriter.newLine();
 
-			//prompt user for end date
-			System.out.println("Please enter an end date(YYYYMMDD)");
-			String endDate = scan.nextLine();
+
 
 			//prompt user for end time
-			System.out.println("Please enter a end time(HHMMSS)");
-			String endTime = scan.nextLine();
+			String endTime = prompt.endTimePrompt();
+		
+			//write end date and time to file
 			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
 			bufferedWriter.newLine();
 
@@ -78,9 +81,8 @@ public class Deliverable1 {
 			bufferedWriter.newLine();	
 
 			//classification
-			System.out.println("Enter a classification if you would like, else type no");
-			String classification = scan.nextLine();
-			if(!classification.equals("no"))
+			String classification = prompt.classificationPrompt();
+			if(!prompt.classificationEqualsNA(classification))
 			{
 				bufferedWriter.write(fields.setClassification(classification));
 				bufferedWriter.newLine();	
@@ -113,5 +115,8 @@ public class Deliverable1 {
 		}
 
 	}
+	
+	//System.out.println("Please enter a start date(YYYYMMDD)");
+	//System.out.println("Please enter a start time(HHMMSS)");
 
 }

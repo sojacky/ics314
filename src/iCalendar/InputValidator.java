@@ -7,6 +7,7 @@ public class InputValidator {
 		
 	}
 	
+	//method to check that the date input is valid
 	public boolean isValidDateString(String date)
 	{
 		boolean isValidDate = false;
@@ -19,11 +20,33 @@ public class InputValidator {
 		
 		return isValidDate;
 	}
+	
+	public boolean isValidTimeString(String time)
+	{
+		boolean isValidTime = false;
+		if(time.length() == 4 && isInteger(time))
+		{
+			isValidTime = true;
+		}
+		return isValidTime;
+		
+	}
+	
+	public boolean isValidClassification(String classification)
+	{
+		boolean isValidClassification = false;
+		if(classification.equalsIgnoreCase("public") || classification.equalsIgnoreCase("private") ||
+				classification.equalsIgnoreCase("NA"))
+		{
+			isValidClassification = true;
+		}
+		return isValidClassification;
+		
+	}
 
 	//helper method to check if string is an integer
 	private boolean isInteger(String str)
 	{
-		System.out.println("str = " + str);
 		try
 		{
 			Integer.parseInt(str);
@@ -35,6 +58,8 @@ public class InputValidator {
 			return false;
 		}
 	}
+	
+	
 }
 
 
