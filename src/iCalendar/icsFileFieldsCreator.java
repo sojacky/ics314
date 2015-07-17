@@ -20,7 +20,6 @@ public class icsFileFieldsCreator {
 		cal = Calendar.getInstance();
 		String date = dateFormat.format(cal.getTime());
 		UID = "UID:" + date + "@mpsommer";
-
 		return UID;
 	}
 
@@ -40,7 +39,6 @@ public class icsFileFieldsCreator {
 	{
 		String dtStart = "";
 		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
-		System.out.println("dtStart = " + dtStart ) ;
 		return dtStart;
 	}
 
@@ -49,7 +47,6 @@ public class icsFileFieldsCreator {
 	{
 		String dtEnd = "";
 		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
-		System.out.println("endDate = " + dtEnd);
 		return dtEnd;
 	}
 
@@ -57,9 +54,7 @@ public class icsFileFieldsCreator {
 	public String setSummaryString(String title)
 	{
 		String summary = "";
-
 		summary = "SUMMARY:" + title;
-
 		return summary;
 	}
 
@@ -108,7 +103,7 @@ public class icsFileFieldsCreator {
 	{
 		return "GEO:" + latitude + ";" + longitude;
 	}
-	
+
 	private String dateFormatter(String date)
 	{
 		return date.substring(6, date.length()) + date.substring(0,2) + date.substring(3,5);

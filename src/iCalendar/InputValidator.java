@@ -1,12 +1,12 @@
 package iCalendar;
 /*This class is implements methods to validate all input from users*/
 public class InputValidator {
-	
+
 	public InputValidator()
 	{
-		
+
 	}
-	
+
 	//method to check that the date input is valid
 	public boolean isValidDateString(String date)
 	{
@@ -17,10 +17,10 @@ public class InputValidator {
 		{
 			isValidDate = true;
 		}
-		
+
 		return isValidDate;
 	}
-	
+
 	public boolean isValidTimeString(String time)
 	{
 		boolean isValidTime = false;
@@ -29,9 +29,9 @@ public class InputValidator {
 			isValidTime = true;
 		}
 		return isValidTime;
-		
+
 	}
-	
+
 	public boolean isValidClassification(String classification)
 	{
 		boolean isValidClassification = false;
@@ -41,7 +41,7 @@ public class InputValidator {
 			isValidClassification = true;
 		}
 		return isValidClassification;
-		
+
 	}
 
 	//helper method to check if string is an integer
@@ -51,15 +51,14 @@ public class InputValidator {
 		{
 			Integer.parseInt(str);
 			return true;
-			
 		}
 		catch(NumberFormatException e)
 		{
 			return false;
 		}
 	}
-	
-	
+
+
 }
 
 

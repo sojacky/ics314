@@ -78,6 +78,7 @@ public class UserInterface {
 		System.out.println("For classification, please type: public, private, or NA if you "
 				+ "do not wish to specify classification.");
 		String classification = scan.nextLine();
+		
 		while(!inputCheck.isValidClassification(classification))
 		{
 			System.out.print("Invalid classification input, ");
@@ -99,6 +100,13 @@ public class UserInterface {
 		
 		return classificationEqualsNA;
 		
+	}
+	
+	public String locationPrompt()
+	{
+		System.out.println("Please enter a location");
+		String location = scan.nextLine();
+		return location;
 	}
 	
 	

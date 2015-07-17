@@ -75,8 +75,9 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 
 			//location
-			System.out.println("Please enter a location");
-			String location = scan.nextLine();
+			String location = prompt.locationPrompt();
+			
+			//write location to file
 			bufferedWriter.write(fields.setLocationString(location));
 			bufferedWriter.newLine();	
 
@@ -115,8 +116,5 @@ public class Deliverable1 {
 		}
 
 	}
-	
-	//System.out.println("Please enter a start date(YYYYMMDD)");
-	//System.out.println("Please enter a start time(HHMMSS)");
 
 }
