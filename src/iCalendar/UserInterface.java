@@ -110,59 +110,64 @@ public class UserInterface {
 	}
 
 
-	
+
 	public String latitudinalPrompt()
 	{
 		String latitude;
 
-			System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
-			latitude = scan.nextLine();
-			
+		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
+		latitude = scan.nextLine();
+
 		while(!inputCheck.isValidGeographicPosition(latitude));
 		{
 			System.out.print("Invalid input! ");
 			System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
 			latitude = scan.nextLine();
-			
+
 		}
-		
-		
+
+
 		return latitude;
 	}
-	
+
 	public String longitudinalPrompt()
 	{
 		String longitude;
+		System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
+		longitude = scan.nextLine();
+
+		while(!inputCheck.isValidGeographicPosition(longitude));
+		{
+			System.out.print("Invalid input! ");
 			System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
 			longitude = scan.nextLine();
-		
-			while(!inputCheck.isValidGeographicPosition(longitude));
-			{
-				System.out.print("Invalid input! ");
-				System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
-				longitude = scan.nextLine();
-				
-			}
-		
+
+		}
+
 		return longitude;
-		
+
 	}
 
 	public boolean enterGeographicPosition()
 	{
 		boolean position = false;
 		String decision = "";
-		do
+System.out.println("entered function");
+
+		System.out.println("Would you like to enter a geographic position? type yes or no");
+		decision = scan.nextLine();
+
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
 		{
+			System.out.print("Invalid input. ");	
 			System.out.println("Would you like to enter a geographic position? type yes or no");
 			decision = scan.nextLine();
 		}
-		while(!(decision.equalsIgnoreCase("no") || decision.equalsIgnoreCase("yes")));
-
 		if(decision.equals("yes"))
 		{
 			position = true;
 		}
+		System.out.println("position = " + position);
 		return position;
 	}
 
