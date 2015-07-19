@@ -114,7 +114,7 @@ public class UserInterface {
 	public String latitudinalPrompt()
 	{
 		String latitude;
-System.out.println("enterereed function");
+		System.out.println("enterereed function");
 		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
 		latitude = scan.nextLine();
 
@@ -162,7 +162,7 @@ System.out.println("enterereed function");
 			System.out.println("Would you like to enter a geographic position? type yes or no");
 			decision = scan.nextLine();
 		}
-		
+
 		if(decision.equals("yes"))
 		{
 			position = true;

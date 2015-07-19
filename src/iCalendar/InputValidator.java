@@ -61,12 +61,12 @@ public class InputValidator {
 	public boolean isValidGeographicPosition(String position)
 	{
 		boolean isValidPosition = false;
-		
+
 		if(!position.substring(0, 1).equals("+") && !position.substring(0, 1).equals("-"))
 		{
 			position = "+" + position;
 		}
-		
+
 		if(position.length() < 11 && isInteger(position.substring(1,3)) && isInteger(position.substring(4,position.length())) &&
 				position.substring(3,4).equals(".") &&
 				position.substring(4,position.length()).length() < 7 
@@ -74,9 +74,7 @@ public class InputValidator {
 		{
 			isValidPosition = true;
 		}	
-		
-		System.out.println(isValidPosition);
-		
+
 		return isValidPosition;
 	}
 
