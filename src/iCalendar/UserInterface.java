@@ -114,11 +114,11 @@ public class UserInterface {
 	public String latitudinalPrompt()
 	{
 		String latitude;
-
+System.out.println("enterereed function");
 		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
 		latitude = scan.nextLine();
 
-		while(!inputCheck.isValidGeographicPosition(latitude));
+		while(!(inputCheck.isValidGeographicPosition(latitude)))
 		{
 			System.out.print("Invalid input! ");
 			System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
@@ -126,7 +126,7 @@ public class UserInterface {
 
 		}
 
-
+		System.out.println("exited function");
 		return latitude;
 	}
 
@@ -136,7 +136,7 @@ public class UserInterface {
 		System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
 		longitude = scan.nextLine();
 
-		while(!inputCheck.isValidGeographicPosition(longitude));
+		while(!inputCheck.isValidGeographicPosition(longitude))
 		{
 			System.out.print("Invalid input! ");
 			System.out.println("Please enter a longitudinal cooridinate(+/-)00.000000");
@@ -152,7 +152,6 @@ public class UserInterface {
 	{
 		boolean position = false;
 		String decision = "";
-System.out.println("entered function");
 
 		System.out.println("Would you like to enter a geographic position? type yes or no");
 		decision = scan.nextLine();
@@ -163,11 +162,11 @@ System.out.println("entered function");
 			System.out.println("Would you like to enter a geographic position? type yes or no");
 			decision = scan.nextLine();
 		}
+		
 		if(decision.equals("yes"))
 		{
 			position = true;
 		}
-		System.out.println("position = " + position);
 		return position;
 	}
 

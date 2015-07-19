@@ -48,46 +48,46 @@ public class Deliverable1 {
 			bufferedWriter.write(fields.setDateStampString());
 			bufferedWriter.newLine();
 
-			//prompt user for start date
-			String startDate = prompt.startDatePrompt();
-
-			//prompt user for end date
-			String endDate = prompt.endDatePrompt();
-
-			//prompt user for start time
-			String startTime = prompt.startTimePrompt();	
-
-			//write start date and time to file
-			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
-			bufferedWriter.newLine();
-
-
-
-			//prompt user for end time
-			String endTime = prompt.endTimePrompt();
-
-			//write end date and time to file
-			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
-			bufferedWriter.newLine();
-
-
-			bufferedWriter.write(fields.setSummaryString(title));
-			bufferedWriter.newLine();
-
-			//location
-			String location = prompt.locationPrompt();
-
-			//write location to file
-			bufferedWriter.write(fields.setLocationString(location));
-			bufferedWriter.newLine();	
-
-			//classification
-			String classification = prompt.classificationPrompt();
-			if(!prompt.classificationEqualsNA(classification))
-			{
-				bufferedWriter.write(fields.setClassification(classification));
-				bufferedWriter.newLine();	
-			}
+//			//prompt user for start date
+//			String startDate = prompt.startDatePrompt();
+//
+//			//prompt user for end date
+//			String endDate = prompt.endDatePrompt();
+//
+//			//prompt user for start time
+//			String startTime = prompt.startTimePrompt();	
+//
+//			//write start date and time to file
+//			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
+//			bufferedWriter.newLine();
+//
+//
+//
+//			//prompt user for end time
+//			String endTime = prompt.endTimePrompt();
+//
+//			//write end date and time to file
+//			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
+//			bufferedWriter.newLine();
+//
+//
+//			bufferedWriter.write(fields.setSummaryString(title));
+//			bufferedWriter.newLine();
+//
+//			//location
+//			String location = prompt.locationPrompt();
+//
+//			//write location to file
+//			bufferedWriter.write(fields.setLocationString(location));
+//			bufferedWriter.newLine();	
+//
+//			//classification
+//			String classification = prompt.classificationPrompt();
+//			if(!prompt.classificationEqualsNA(classification))
+//			{
+//				bufferedWriter.write(fields.setClassification(classification));
+//				bufferedWriter.newLine();	
+//			}
 
 			//geographic position
 			//			System.out.println("Would you like to enter a geographic position? type yes or no");
@@ -101,10 +101,10 @@ public class Deliverable1 {
 
 			if(prompt.enterGeographicPosition())
 			{
-			String latitude = prompt.latitudinalPrompt();
-			String longitude = prompt.longitudinalPrompt();
-			bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
-			bufferedWriter.newLine();
+				String latitude = prompt.latitudinalPrompt();
+				String longitude = prompt.longitudinalPrompt();
+				bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
+				bufferedWriter.newLine();
 			}
 			//			}
 
