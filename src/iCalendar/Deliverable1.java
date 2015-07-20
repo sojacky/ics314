@@ -11,106 +11,122 @@ public class Deliverable1 {
 
 	public static void main(String[] args) {
 
-
-		String filePath = "";		
 		File file;
 		icsFileFieldsCreator fields = new icsFileFieldsCreator();
 		Scanner scan = new Scanner(System.in);
 		UserInterface prompt = new UserInterface();
+		String title = "";
+		String startDate = "";
+		String endDate = "";
+		String startTime = "";
+		String endTime = "";
+		String location = "";
+		String classification = "";
+		String latitude = "";
+		String longitude = "";
+		boolean position = false;
+
+		/*
+		 * All THE USER INTERFACE PROMPTS
+		 */
+
+		//prompt user for title and set fileName
+		title = prompt.titlePrompt();
+
+		//prompt user for start date
+		startDate = prompt.startDatePrompt();
+
+		//prompt user for end date
+		endDate = prompt.endDatePrompt();
+
+		//prompt user for start time
+		startTime = prompt.startTimePrompt();	
+
+		//prompt user for end time
+		endTime = prompt.endTimePrompt();
+
+		//location
+		location = prompt.locationPrompt();
+
+		//classification
+		classification = prompt.classificationPrompt();
+
+		//geographic position
+		position = prompt.enterGeographicPosition();
+		if(position)
+		{
+			latitude = prompt.latitudinalPrompt();
+			longitude = prompt.longitudinalPrompt();
+		}
+
+
+
+
+		/*
+		 * WRITE ALL FIELDS TO FILE
+		 */
 
 		try {
-
-
-			System.out.println("Please enter a title for your event");
-			String title = scan.nextLine();
-
-			//for name of file
-			filePath = title + ".ics";
-			file = new File(filePath);
+			fields.setFileName(title);
+			file = new File(fields.getFileName());
 			file.createNewFile();
-			FileWriter fileWriter = new FileWriter(filePath);
+			FileWriter fileWriter = new FileWriter(fields.getFileName());
 
 			//Writing input to file
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			bufferedWriter.write("BEGIN:VCALENDAR");
+			bufferedWriter.write(fields.getBeginCalendarType());
 			bufferedWriter.newLine();
-			bufferedWriter.write("VERSION:2.0");
+			bufferedWriter.write(fields.getVersion());
 			bufferedWriter.newLine();
-			bufferedWriter.write("CALSCALE:GREGORIAN");
+			bufferedWriter.write(fields.getCalScale());
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.hawaiiStandardTimeCreator());
 			bufferedWriter.newLine();
-			bufferedWriter.write("BEGIN:VEVENT");
+			bufferedWriter.write(fields.getBeginEventType());
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.setUIDString());
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.setDateStampString());
 			bufferedWriter.newLine();
 
-			//prompt user for start date
-			String startDate = prompt.startDatePrompt();
-
-			//prompt user for end date
-			String endDate = prompt.endDatePrompt();
-
-			//prompt user for start time
-			String startTime = prompt.startTimePrompt();	
-
 			//write start date and time to file
 			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
 			bufferedWriter.newLine();
-
-
-			//prompt user for end time
-			String endTime = prompt.endTimePrompt();
 
 			//write end date and time to file
 			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
 			bufferedWriter.newLine();
 
-
+			//write summary field
 			bufferedWriter.write(fields.setSummaryString(title));
 			bufferedWriter.newLine();
-
-			//location
-			String location = prompt.locationPrompt();
 
 			//write location to file
 			bufferedWriter.write(fields.setLocationString(location));
 			bufferedWriter.newLine();	
 
 			//classification
-			String classification = prompt.classificationPrompt();
 			if(!prompt.classificationEqualsNA(classification))
 			{
 				bufferedWriter.write(fields.setClassification(classification));
 				bufferedWriter.newLine();	
 			}
 
-
 			//geographic position
-			if(prompt.enterGeographicPosition())
+			if(position)
 			{
-				String latitude = prompt.latitudinalPrompt();
-				String longitude = prompt.longitudinalPrompt();
 				bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
 				bufferedWriter.newLine();
 			}
 
-
-			bufferedWriter.write("END:VEVENT");
+			bufferedWriter.write(fields.getEndEventType());
 			bufferedWriter.newLine();
-			bufferedWriter.write("END:VCALENDAR");
-
-
-
+			bufferedWriter.write(fields.getEndCalendarType());
 			bufferedWriter.close();
 			scan.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();	
 		}
-
 	}
-
 }

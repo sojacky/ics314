@@ -12,6 +12,13 @@ public class UserInterface {
 
 	}
 
+	public String titlePrompt()
+	{
+		System.out.println("Please enter a title for your event");
+		String title = scan.nextLine();
+		return title;
+	}
+
 	public String startDatePrompt()
 	{
 		System.out.println("Please enter a start date(mm/dd/yyyy)");
@@ -114,7 +121,6 @@ public class UserInterface {
 	public String latitudinalPrompt()
 	{
 		String latitude;
-		System.out.println("enterereed function");
 		System.out.println("Please enter a latitudinal cooridinate(+/-)00.000000");
 		latitude = scan.nextLine();
 
@@ -126,7 +132,6 @@ public class UserInterface {
 
 		}
 
-		System.out.println("exited function");
 		return latitude;
 	}
 

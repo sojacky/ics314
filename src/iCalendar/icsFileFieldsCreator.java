@@ -8,6 +8,13 @@ import java.util.Date;
 
 public class icsFileFieldsCreator {
 	Calendar cal;
+	private String fileName = "";
+	private String beginCalendarType = "BEGIN:VCALENDAR";
+	private String version = "VERSION:2.0";
+	private String calScale = "CALSCALE:GREGORIAN";
+	private String beginEventType = "BEGIN:VEVENT";
+	private String endCalendarType = "END:VCALENDAR";
+	private String endEventType = "END:VEVENT";
 
 
 	public icsFileFieldsCreator(){};
@@ -102,6 +109,77 @@ public class icsFileFieldsCreator {
 	public String setGeographicPosition(String latitude, String longitude)
 	{
 		return "GEO:" + latitude + ";" + longitude;
+	}
+
+
+	public void setFileName(String fileName)
+	{
+		this.fileName = fileName + ".ics";
+	}
+
+	public String getFileName()
+	{
+		return fileName;
+	}
+
+	public void setBeginCalendarType(String calendarType)
+	{
+		beginCalendarType = "BEGIN:" + calendarType;
+	}
+
+	public String getBeginCalendarType()
+	{
+		return beginCalendarType;
+	}
+
+	public void setVersion(String version)
+	{
+		this.version = "VERSION:" + version;
+	}
+
+	public String getVersion()
+	{
+		return version;
+	}
+
+	public void setCalScale(String calScale)
+	{
+		this.calScale = "CALSCALE:" + calScale;
+	}
+
+	public String getCalScale()
+	{
+		return calScale;
+	}
+
+	public void setBeginEventType(String beginEventType)
+	{
+		this.beginEventType = "BEGIN:" + beginEventType;
+	}
+
+	public String getBeginEventType()
+	{
+		return beginEventType;
+	}
+
+	public void setEndCalendarType(String calendarType)
+	{
+		endCalendarType = "END:" + calendarType;
+	}
+
+	public String getEndCalendarType()
+	{
+		return endCalendarType;
+	}
+
+	public void setEndEventType(String eventType)
+	{
+		endEventType = "END:" + eventType;
+	}
+
+	public String getEndEventType()
+	{
+		return endEventType;
 	}
 
 	private String dateFormatter(String date)
