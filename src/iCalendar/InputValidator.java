@@ -24,7 +24,9 @@ public class InputValidator {
 	public boolean isValidTimeString(String time)
 	{
 		boolean isValidTime = false;
-		if(time.length() == 4 && isInteger(time))
+		if(time.length() < 12 && isInteger(time.substring(0, 2)) && time.substring(2,3).equals(":") &&
+				isInteger(time.substring(3,5)) && time.substring(5,6).equals(" ") &&
+				(time.substring(6,8).equalsIgnoreCase("am")  || time.substring(6,8).equalsIgnoreCase("pm")))
 		{
 			isValidTime = true;
 		}

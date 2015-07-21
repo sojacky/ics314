@@ -49,7 +49,7 @@ public class UserInterface {
 
 	public String startTimePrompt()
 	{
-		System.out.println("Please enter a start time(hhmm)");
+		System.out.println("Please enter a start time(hh:mm am/pm)");
 		String startTime = scan.nextLine();
 
 		while(!inputCheck.isValidTimeString(startTime))
