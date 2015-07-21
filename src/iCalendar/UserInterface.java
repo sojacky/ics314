@@ -55,7 +55,7 @@ public class UserInterface {
 		while(!inputCheck.isValidTimeString(startTime))
 		{
 			System.out.print("Invalid start time, ");
-			System.out.println("Please enter a start time(hhmm)");
+			System.out.println("Please enter a start time(hh:mm am/pm)");
 			startTime = scan.nextLine();
 
 		}
@@ -65,13 +65,13 @@ public class UserInterface {
 
 	public String endTimePrompt()
 	{
-		System.out.println("Please enter an end time(hhmm)");
+		System.out.println("Please enter an end time(hh:mm am/pm)");
 		String endTime = scan.nextLine();
 
 		while(!inputCheck.isValidTimeString(endTime))
 		{
 			System.out.print("Invalid end time, ");
-			System.out.println("Please enter an end time(hhmm)");
+			System.out.println("Please enter an end time(hh:mm am/pm)");
 			endTime = scan.nextLine();
 
 		}

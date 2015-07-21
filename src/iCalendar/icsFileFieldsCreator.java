@@ -45,6 +45,8 @@ public class icsFileFieldsCreator {
 	public String setStartDateString(String startDate, String startTime)
 	{
 		String dtStart = "";
+		startTime = toMilitaryTime(startTime);
+		System.out.println("startTime = " + startTime);
 		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
 		return dtStart;
 	}
@@ -53,6 +55,8 @@ public class icsFileFieldsCreator {
 	public String setEndDateString(String endDate, String endTime)
 	{
 		String dtEnd = "";
+		endTime = toMilitaryTime(endTime);
+		System.out.println("endTime = " + endTime);
 		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
 		return dtEnd;
 	}
@@ -185,6 +189,25 @@ public class icsFileFieldsCreator {
 	private String dateFormatter(String date)
 	{
 		return date.substring(6, date.length()) + date.substring(0,2) + date.substring(3,5);
+	}
+
+	//converts standard time to military time
+	private String toMilitaryTime(String time)
+	{
+		if(time.substring(6, 8).equalsIgnoreCase("am"))
+		{
+			time = time.substring(0, 2) + time.substring(3, 5);
+		}
+		else
+		{
+			int timeInteger = Integer.parseInt(time.substring(0, 2));
+			timeInteger = timeInteger + 12;
+			time = Integer.toString(timeInteger) + time.substring(3, 5); 
+			
+		}
+
+		return time;
+
 	}
 
 }
