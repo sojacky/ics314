@@ -36,7 +36,7 @@ public class InputValidator {
 	{
 		boolean isValidClassification = false;
 		if(classification.equalsIgnoreCase("public") || classification.equalsIgnoreCase("private") ||
-				classification.equalsIgnoreCase("NA"))
+				classification.equalsIgnoreCase("confidential") || classification.equalsIgnoreCase("NA"))
 		{
 			isValidClassification = true;
 		}
