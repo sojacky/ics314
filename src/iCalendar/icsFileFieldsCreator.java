@@ -46,7 +46,6 @@ public class icsFileFieldsCreator {
 	{
 		String dtStart = "";
 		startTime = toMilitaryTime(startTime);
-		System.out.println("startTime = " + startTime);
 		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
 		return dtStart;
 	}
@@ -56,7 +55,6 @@ public class icsFileFieldsCreator {
 	{
 		String dtEnd = "";
 		endTime = toMilitaryTime(endTime);
-		System.out.println("endTime = " + endTime);
 		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
 		return dtEnd;
 	}
@@ -76,7 +74,7 @@ public class icsFileFieldsCreator {
 
 	}
 
-	//set timezone
+	//set time zone
 	public String hawaiiStandardTimeCreator()
 	{
 		String timeZoneBlock = 

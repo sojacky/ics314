@@ -24,7 +24,7 @@ public class InputValidator {
 	public boolean isValidTimeString(String time)
 	{
 		boolean isValidTime = false;
-		if(time.length() < 12 && isInteger(time.substring(0, 2)) && time.substring(2,3).equals(":") &&
+		if(!time.equals("") && time.length() < 12 && isInteger(time.substring(0, 2)) && time.substring(2,3).equals(":") &&
 				isInteger(time.substring(3,5)) && time.substring(5,6).equals(" ") &&
 				(time.substring(6,8).equalsIgnoreCase("am")  || time.substring(6,8).equalsIgnoreCase("pm")))
 		{
@@ -64,13 +64,13 @@ public class InputValidator {
 	{
 		boolean isValidPosition = false;
 
-		if(!position.substring(0, 1).equals("+") && !position.substring(0, 1).equals("-"))
+		if(!position.equals("") && !position.substring(0, 1).equals("+") && !position.substring(0, 1).equals("-"))
 		{
 			position = "+" + position;
 		}
 
-		if(position.length() < 11 && isInteger(position.substring(1,3)) && isInteger(position.substring(4,position.length())) &&
-				position.substring(3,4).equals(".") &&
+		if(!position.equals("") && position.length() < 11 && isInteger(position.substring(1,3)) && 
+				isInteger(position.substring(4,position.length())) && position.substring(3,4).equals(".") &&
 				position.substring(4,position.length()).length() < 7 
 				&& (position.substring(0,1).equals("+") || position.substring(0,1).equals("-")))
 		{
