@@ -118,6 +118,10 @@ public class Deliverable1 {
 				bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
 				bufferedWriter.newLine();
 			}
+			
+			//To be determined. Needs list of events before knowing where to add this.
+			bufferedWriter.write(fields.setComments());
+			bufferedWriter.newLine();
 
 			bufferedWriter.write(fields.getEndEventType());
 			bufferedWriter.newLine();

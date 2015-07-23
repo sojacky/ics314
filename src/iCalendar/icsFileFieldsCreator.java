@@ -112,6 +112,12 @@ public class icsFileFieldsCreator {
 	{
 		return "GEO:" + latitude + ";" + longitude;
 	}
+	
+	//set comment
+	public String setComments()
+	{
+	  return "COMMENT:" + GreatCircleDistance.CircleDistance();
+	}
 
 
 	public void setFileName(String fileName)
