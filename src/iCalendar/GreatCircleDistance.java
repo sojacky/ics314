@@ -2,10 +2,45 @@ package iCalendar;
 
 // Calculates the Great Circle Distance between two .ics events
 public class GreatCircleDistance {
+	private String startTime = "";
+	private String date = "";
+	
   public GreatCircleDistance()
   {
 
   }
+  
+  //sets startTime from reading DSTART line of .ics file
+  public void setStartTimeFromFile(String currentLine)
+  {
+		if(currentLine.startsWith("DTSTART;TZID="))
+		{
+			startTime = currentLine.substring(39, currentLine.length());
+		}
+  }
+  
+  public String getStartTimeFromFile()
+  {
+	  return startTime;
+  }
+  
+  
+  public void setDateFromFile(String currentLine)
+  {
+		if(currentLine.startsWith("DTSTART;TZID="))
+		{
+
+			int index = currentLine.indexOf(':');
+			date = currentLine.substring(index+1, index +9);
+		}
+  }
+  
+  public String getDateFromFile()
+  {
+	  return date;
+  }
+  
+  
 
    // parameters to be used (String event1, String event2, String lat1, String lon1, String lat2, String lon2)
   public static String CircleDistance()

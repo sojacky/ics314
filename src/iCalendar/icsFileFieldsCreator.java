@@ -80,24 +80,7 @@ public class icsFileFieldsCreator {
 	public String setTZIDString(String timeZone)
 	{
 		String timeZoneBlock = 
-				"BEGIN:VTIMEZONE\n"+
-						"TZID:"+ timeZone +"\n"+
-//						"BEGIN:DAYLIGHT\n"+
-//						"TZOFFSETFROM:-1030\n"+
-//						"DTSTART:19330430T020000\n"+
-//						"TZNAME:HDT\n"+
-//						"TZOFFSETTO:-0930\n"+
-//						"RDATE:19330430T020000\n"+
-//						"RDATE:19420209T020000\n"+
-//						"END:DAYLIGHT\n"+
-//						"BEGIN:STANDARD\n"+
-//						"TZOFFSETFROM:-1030\n"+
-//						"DTSTART:19470608T020000\n"+
-//						"TZNAME:HST\n"+
-//						"TZOFFSETTO:-1000\n"+
-//						"RDATE:19470608T020000\n"+
-//						"END:STANDARD\n"+
-						"END:VTIMEZONE";
+				"BEGIN:VTIMEZONE\n" + "TZID:" + timeZone + "\n" + "END:VTIMEZONE";
 		return timeZoneBlock;
 	}
 
@@ -192,7 +175,7 @@ public class icsFileFieldsCreator {
 		return endEventType;
 	}
 
-	private String dateFormatter(String date)
+	public String dateFormatter(String date)
 	{
 		return date.substring(6, date.length()) + date.substring(0,2) + date.substring(3,5);
 	}

@@ -16,6 +16,7 @@ public class Deliverable1 {
 
 		File file;
 		icsFileFieldsCreator fields = new icsFileFieldsCreator();
+		GreatCircleDistance gcd = new GreatCircleDistance();
 		Scanner scan = new Scanner(System.in);
 		UserInterface prompt = new UserInterface();
 		String title = "";
@@ -29,6 +30,7 @@ public class Deliverable1 {
 		String longitude = "";
 		String timeZone = "Pacific/Honolulu";
 		boolean position = false;
+		String gcdDate = "";
 
 		/*
 		 * All THE USER INTERFACE PROMPTS
@@ -55,7 +57,6 @@ public class Deliverable1 {
 			timeZone = prompt.timeZonePrompt(); 
 		}
 	
-
 		//location
 		location = prompt.locationPrompt();
 
@@ -69,6 +70,14 @@ public class Deliverable1 {
 			latitude = prompt.latitudinalPrompt();
 			longitude = prompt.longitudinalPrompt();
 		}
+		
+		//prompt for calculating great circle distance
+		if(prompt.enterGreatCircleDistance())
+		{
+			gcdDate = prompt.gcdDatePrompt();
+			gcdDate = fields.dateFormatter(gcdDate);
+			System.out.println("gcdDate = " + gcdDate);
+		}
 
 
 
@@ -76,7 +85,7 @@ public class Deliverable1 {
 		/*
 		 * WRITE ALL FIELDS TO FILE
 		 */
-
+/*
 		try {
 			fields.setFileName(title);
 			file = new File(fields.getFileName());
@@ -144,11 +153,52 @@ public class Deliverable1 {
 		{
 			e.printStackTrace();	
 		}
-	
+*/		
 		/*
 		 * Read From file
-		 * */
+		 */
 		
+		//path to folders where .ics files are located
+		File folder = new File("/Users/michaelSommer/Desktop/ics314/iCalendar");
+		File[] listOfFiles = folder.listFiles();
+
+		//loop to find all .ics files in a folder
+		for (int i = 0; i < listOfFiles.length; i++) {
+		  File fileFromList = listOfFiles[i];
+		  if (fileFromList.isFile() && fileFromList.getName().endsWith(".ics")) {
+		    String content = fileFromList.getName();
+		    System.out.println("file name = " + content);
+		    
+		    //read files
+			try(BufferedReader reader = new BufferedReader(new FileReader(fileFromList)))
+			{
+				String currentLine;
+				 
+				while ((currentLine = reader.readLine()) != null) {
+					
+					//find the startTime and date
+					gcd.setDateFromFile(currentLine);
+					gcd.setStartTimeFromFile(currentLine);
+				}
+				System.out.println("date = " +gcd.getDateFromFile());
+				System.out.println("startTime = " + gcd.getStartTimeFromFile());
+			} 
+			catch (FileNotFoundException e) 
+			{
+				
+				e.printStackTrace();
+			} 
+			catch (IOException e)
+			{
+				
+				e.printStackTrace();
+			}
+		    
+		   
+		    
+		  } 
+		}
+/*		
 		try(BufferedReader reader = new BufferedReader(new FileReader("asdf.ics")))
 		{
 			String currentLine;
@@ -172,6 +222,6 @@ public class Deliverable1 {
 			e.printStackTrace();
 		}
 		
-		
+*/		
 	}
 }

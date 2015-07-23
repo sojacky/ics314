@@ -160,6 +160,20 @@ public class UserInterface {
 		return longitude;
 
 	}
+	
+	public String gcdDatePrompt()
+	{
+		System.out.println("Please enter a date(mm/dd/yyyy)");
+		String date = scan.nextLine();
+
+		while(!inputCheck.isValidDateString(date))
+		{
+			System.out.print("Invalid date, ");
+			System.out.println("Please enter a date(mm/dd/yyyy)");
+			date = scan.nextLine();
+		}
+		return date;
+	}
 
 	public boolean enterGeographicPosition()
 	{
@@ -194,6 +208,28 @@ public class UserInterface {
 		{
 			System.out.print("Invalid input. ");	
 			System.out.println("Would you like to enter a timezone? type yes or no");
+			decision = scan.nextLine();
+		}
+
+		if(decision.equals("yes"))
+		{
+			result = true;
+		}
+		return result;
+		
+	}
+	
+	public boolean enterGreatCircleDistance()
+	{
+		boolean result = false;
+		String decision = "";
+		System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no");
+		decision = scan.nextLine();
+		
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
+		{
+			System.out.print("Invalid input. ");	
+			System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no");
 			decision = scan.nextLine();
 		}
 
