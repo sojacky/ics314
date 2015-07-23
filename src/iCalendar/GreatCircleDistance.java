@@ -4,9 +4,9 @@ package iCalendar;
 public class GreatCircleDistance {
   public GreatCircleDistance()
   {
-     
+
   }
-  
+
    // parameters to be used (String event1, String event2, String lat1, String lon1, String lat2, String lon2)
   public static String CircleDistance()
   {
@@ -18,7 +18,7 @@ public class GreatCircleDistance {
     lon1 = "-12.123456";
     lat2 = "65.654321";
     lon2 = "-65.654321";
-    
+
     // Convert latitude and longitude to radians
     double x1 = Math.toRadians(Double.parseDouble(lat1));
     double y1 = Math.toRadians(Double.parseDouble(lon1));
@@ -38,9 +38,9 @@ public class GreatCircleDistance {
     double miles =  (double) Math.round((kilometers * 0.621371) * 100) / 100;
 
     // Concatenate into one string for easy return
-    String comment = event1 + " is " + kilometers + " kilometers away from " + event2 + ". " + 
+    String comment = event1 + " is " + kilometers + " kilometers away from " + event2 + ". " +
                      event1 + " is " + miles + " miles away from " + event2 + ".";
-    
+
     return comment;
   }
 }
