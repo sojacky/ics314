@@ -1,7 +1,10 @@
 package iCalendar;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,6 +27,7 @@ public class Deliverable1 {
 		String classification = "";
 		String latitude = "";
 		String longitude = "";
+		String timeZone = "Pacific/Honolulu";
 		boolean position = false;
 
 		/*
@@ -44,6 +48,13 @@ public class Deliverable1 {
 
 		//prompt user for end time
 		endTime = prompt.endTimePrompt();
+		
+		//prompt user for time zone
+		if(prompt.enterTimeZone())
+		{
+			timeZone = prompt.timeZonePrompt(); 
+		}
+	
 
 		//location
 		location = prompt.locationPrompt();
@@ -80,7 +91,7 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.getCalScale());
 			bufferedWriter.newLine();
-			bufferedWriter.write(fields.hawaiiStandardTimeCreator());
+			bufferedWriter.write(fields.setTZIDString(timeZone));
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.getBeginEventType());
 			bufferedWriter.newLine();
@@ -90,11 +101,11 @@ public class Deliverable1 {
 			bufferedWriter.newLine();
 
 			//write start date and time to file
-			bufferedWriter.write(fields.setStartDateString(startDate, startTime));
+			bufferedWriter.write(fields.setStartDateString(startDate, startTime, timeZone));
 			bufferedWriter.newLine();
 
 			//write end date and time to file
-			bufferedWriter.write(fields.setEndDateString(endDate, endTime));
+			bufferedWriter.write(fields.setEndDateString(endDate, endTime, timeZone));
 			bufferedWriter.newLine();
 
 			//write summary field
@@ -125,8 +136,38 @@ public class Deliverable1 {
 			bufferedWriter.close();
 			scan.close();
 
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			e.printStackTrace();	
 		}
+	
+		/*
+		 * Read From file
+		 * */
+		
+		try(BufferedReader reader = new BufferedReader(new FileReader("asdf.ics")))
+		{
+			String currentLine;
+			 
+			while ((currentLine = reader.readLine()) != null) {
+				System.out.println(currentLine);
+				if(currentLine.startsWith("DTSTART;TZID=Pacific/Honolulu"))
+				{
+					System.out.println("startTime = " + currentLine.substring(39, currentLine.length()));
+				}
+			}
+		} 
+		catch (FileNotFoundException e) 
+		{
+			
+			e.printStackTrace();
+		} 
+		catch (IOException e)
+		{
+			
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

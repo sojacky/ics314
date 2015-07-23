@@ -29,6 +29,8 @@ public class icsFileFieldsCreator {
 		UID = "UID:" + date + "@mpsommer";
 		return UID;
 	}
+	
+	
 
 	//Set the date stamp
 	public String setDateStampString()
@@ -42,20 +44,20 @@ public class icsFileFieldsCreator {
 
 
 	//Set start date
-	public String setStartDateString(String startDate, String startTime)
+	public String setStartDateString(String startDate, String startTime, String timeZone)
 	{
 		String dtStart = "";
 		startTime = toMilitaryTime(startTime);
-		dtStart = "DTSTART;TZID=Pacific/Honolulu:" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
+		dtStart = "DTSTART;TZID=" + timeZone + ":" + dateFormatter(startDate) + "T" + startTime + "00";//two zeroes at end are for seconds
 		return dtStart;
 	}
 
 	//Set end date
-	public String setEndDateString(String endDate, String endTime)
+	public String setEndDateString(String endDate, String endTime, String timeZone)
 	{
 		String dtEnd = "";
 		endTime = toMilitaryTime(endTime);
-		dtEnd = "DTEND;TZID=Pacific/Honolulu:" + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
+		dtEnd = "DTEND;TZID=" + timeZone + ":"  + dateFormatter(endDate) + "T" + endTime + "00";//two zeroes at end are for seconds
 		return dtEnd;
 	}
 
@@ -75,26 +77,26 @@ public class icsFileFieldsCreator {
 	}
 
 	//set time zone
-	public String hawaiiStandardTimeCreator()
+	public String setTZIDString(String timeZone)
 	{
 		String timeZoneBlock = 
 				"BEGIN:VTIMEZONE\n"+
-						"TZID:Pacific/Honolulu\n"+
-						"BEGIN:DAYLIGHT\n"+
-						"TZOFFSETFROM:-1030\n"+
-						"DTSTART:19330430T020000\n"+
-						"TZNAME:HDT\n"+
-						"TZOFFSETTO:-0930\n"+
-						"RDATE:19330430T020000\n"+
-						"RDATE:19420209T020000\n"+
-						"END:DAYLIGHT\n"+
-						"BEGIN:STANDARD\n"+
-						"TZOFFSETFROM:-1030\n"+
-						"DTSTART:19470608T020000\n"+
-						"TZNAME:HST\n"+
-						"TZOFFSETTO:-1000\n"+
-						"RDATE:19470608T020000\n"+
-						"END:STANDARD\n"+
+						"TZID:"+ timeZone +"\n"+
+//						"BEGIN:DAYLIGHT\n"+
+//						"TZOFFSETFROM:-1030\n"+
+//						"DTSTART:19330430T020000\n"+
+//						"TZNAME:HDT\n"+
+//						"TZOFFSETTO:-0930\n"+
+//						"RDATE:19330430T020000\n"+
+//						"RDATE:19420209T020000\n"+
+//						"END:DAYLIGHT\n"+
+//						"BEGIN:STANDARD\n"+
+//						"TZOFFSETFROM:-1030\n"+
+//						"DTSTART:19470608T020000\n"+
+//						"TZNAME:HST\n"+
+//						"TZOFFSETTO:-1000\n"+
+//						"RDATE:19470608T020000\n"+
+//						"END:STANDARD\n"+
 						"END:VTIMEZONE";
 		return timeZoneBlock;
 	}

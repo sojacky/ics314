@@ -2,19 +2,26 @@ package iCalendar;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
 
 public class UserInterfaceTest {
+	UserInterface test = new UserInterface();
 
 	@Test
 	public void testTitlePrompt() {
+		String data = "Hello, World!\r\n";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		String input = test.titlePrompt();
 		
+		
+		assertEquals("Hello, World!\r\n", input);		
 	}
 
 	@Test
 	public void testStartDatePrompt() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

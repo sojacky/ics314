@@ -49,9 +49,7 @@ public class InputValidatorTest {
 		assertTrue(test.isValidClassification("na"));
 		assertFalse(test.isValidClassification(""));
 		assertFalse(test.isValidClassification("aA1!/"));
-		
-			
-			
+				
 	}
 
 	@Test

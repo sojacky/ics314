@@ -16,6 +16,7 @@ public class UserInterface {
 	{
 		System.out.println("Please enter a title for your event");
 		String title = scan.nextLine();
+		System.out.println(title);
 		return title;
 	}
 
@@ -89,7 +90,7 @@ public class UserInterface {
 		while(!inputCheck.isValidClassification(classification))
 		{
 			System.out.print("Invalid classification input, ");
-			System.out.println("For classification, please type: public, private, or NA if you "
+			System.out.println("For classification, please type: public, private, confidential, or NA if you "
 					+ "do not wish to specify classification.");
 			classification = scan.nextLine();
 
@@ -114,6 +115,13 @@ public class UserInterface {
 		System.out.println("Please enter a location");
 		String location = scan.nextLine();
 		return location;
+	}
+	
+	public String timeZonePrompt()
+	{
+		System.out.println("Please enter a timezone(e.g. =  Pacific/Honolulu)");
+		String title = scan.nextLine();
+		return title;
 	}
 
 
@@ -173,6 +181,28 @@ public class UserInterface {
 			position = true;
 		}
 		return position;
+	}
+	
+	public boolean enterTimeZone()
+	{
+		boolean result = false;
+		String decision = "";
+		System.out.println("Would you like to enter a timezone? type yes or no");
+		decision = scan.nextLine();
+		
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
+		{
+			System.out.print("Invalid input. ");	
+			System.out.println("Would you like to enter a timezone? type yes or no");
+			decision = scan.nextLine();
+		}
+
+		if(decision.equals("yes"))
+		{
+			result = true;
+		}
+		return result;
+		
 	}
 
 
