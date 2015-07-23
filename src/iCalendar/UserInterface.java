@@ -16,7 +16,6 @@ public class UserInterface {
 	{
 		System.out.println("Please enter a title for your event");
 		String title = scan.nextLine();
-		System.out.println(title);
 		return title;
 	}
 
@@ -173,6 +172,13 @@ public class UserInterface {
 			date = scan.nextLine();
 		}
 		return date;
+	}
+	
+	public String folderPathPrompt()
+	{
+		System.out.println("Please enter a path to folder containing .ics files");
+		String folderPath = scan.nextLine();
+		return folderPath;
 	}
 
 	public boolean enterGeographicPosition()

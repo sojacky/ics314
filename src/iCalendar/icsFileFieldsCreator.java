@@ -15,6 +15,7 @@ public class icsFileFieldsCreator {
 	private String beginEventType = "BEGIN:VEVENT";
 	private String endCalendarType = "END:VCALENDAR";
 	private String endEventType = "END:VEVENT";
+	String summary = "";
 
 
 	public icsFileFieldsCreator(){};
@@ -64,10 +65,11 @@ public class icsFileFieldsCreator {
 	//set title
 	public String setSummaryString(String title)
 	{
-		String summary = "";
+		
 		summary = "SUMMARY:" + title;
 		return summary;
 	}
+	
 
 	//set location
 	public String setLocationString(String location)
