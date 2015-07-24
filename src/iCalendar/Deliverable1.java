@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 
@@ -19,6 +22,7 @@ public class Deliverable1 {
 		GreatCircleDistance gcd = new GreatCircleDistance();
 		Scanner scan = new Scanner(System.in);
 		UserInterface prompt = new UserInterface();
+		PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>();
 		String title = "";
 		String startDate = "";
 		String endDate = "";
@@ -36,7 +40,7 @@ public class Deliverable1 {
 		/*
 		 * All THE USER INTERFACE PROMPTS
 		 */
-
+		/*
 		//prompt user for title and set fileName
 		title = prompt.titlePrompt();
 
@@ -71,7 +75,7 @@ public class Deliverable1 {
 			latitude = prompt.latitudinalPrompt();
 			longitude = prompt.longitudinalPrompt();
 		}
-
+		 */
 		//prompt for calculating great circle distance
 		if(prompt.enterGreatCircleDistance())
 		{
@@ -89,7 +93,7 @@ public class Deliverable1 {
 		/*
 		 * WRITE ALL FIELDS TO FILE
 		 */
-
+		/*
 		try {
 			fields.setFileName(title);
 			file = new File(fields.getFileName());
@@ -157,6 +161,8 @@ public class Deliverable1 {
 		{
 			e.printStackTrace();	
 		}
+		 */
+
 
 		/*
 		 * Read From file
@@ -165,48 +171,65 @@ public class Deliverable1 {
 		//path to folders where .ics files are located
 		File folder = new File(folderPath);
 		File[] listOfFiles = folder.listFiles();
-/*
+		ArrayList<File> filesOnAGivenDay = new ArrayList<File>();
+		int counter = 0;
+
 		//loop to find all .ics files in a folder
 		for (int i = 0; i < listOfFiles.length; i++)
 		{
 			File fileFromList = listOfFiles[i];
 			if (fileFromList.isFile() && fileFromList.getName().endsWith(".ics")) 
 			{
-
-				
 				//read files
 				try(BufferedReader reader = new BufferedReader(new FileReader(fileFromList)))
 				{
 					String currentLine;
-
 					while ((currentLine = reader.readLine()) != null) 
-					{
-
-						//find the startTime and date
+					{	
+						//Set required fields for each file for GCD
 						gcd.setDateFromFile(currentLine);
 						gcd.setStartTimeFromFile(currentLine);
 						gcd.setEndTimeFromFile(currentLine);
 						gcd.setEventNameFromFile(currentLine);
 					}
-					System.out.println("date = " +gcd.getDateFromFile());
-					System.out.println("startTime = " + gcd.getStartTimeFromFile());
-					System.out.println("endTime = " + gcd.getEndTimeFromFile());
-					System.out.println("Event name =" + gcd.getEventNameFromFile());
+					//					System.out.println("date = " +gcd.getDateFromFile());
+					//					System.out.println("startTime = " + gcd.getStartTimeFromFile());
+					//					System.out.println("endTime = " + gcd.getEndTimeFromFile());
+					//					System.out.println("Event name =" + gcd.getEventNameFromFile());
+
+					//add files that equal given day to ArrayList
+					if(gcd.getDateFromFile().equals(gcdDate))
+					{
+						
+						Integer date = Integer.parseInt(gcd.getStartTimeFromFile());
+						pq1.offer(date);
+						counter++;
+						System.out.println("counter = " + counter);
+					}
 				} 
 				catch (FileNotFoundException e) 
 				{
-
 					e.printStackTrace();
 				} 
 				catch (IOException e)
 				{
-
 					e.printStackTrace();
 				}
-				 
-			} 
-
+			}
 		}	
-*/
+        //printing contents of queue
+		System.out.println("Queue size = " + pq1.size());
+		int queueSize = pq1.size();
+		for(int j = 0; j < queueSize; j++ )
+		{
+			System.out.println(pq1.poll());
+		}
+	}
+}
+
+class fileStartTimeQueue implements Comparator<Integer> {
+	 
+	public int compare(Integer one, Integer two) {
+		return two - one;
 	}
 }

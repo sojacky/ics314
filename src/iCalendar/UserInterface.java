@@ -162,13 +162,13 @@ public class UserInterface {
 	
 	public String gcdDatePrompt()
 	{
-		System.out.println("Please enter a date(mm/dd/yyyy)");
+		System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy)");
 		String date = scan.nextLine();
 
 		while(!inputCheck.isValidDateString(date))
 		{
 			System.out.print("Invalid date, ");
-			System.out.println("Please enter a date(mm/dd/yyyy)");
+			System.out.println("Please enter a date for greatest circle distance of events(mm/dd/yyyy)");
 			date = scan.nextLine();
 		}
 		return date;
