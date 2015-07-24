@@ -10,6 +10,10 @@ public class GreatCircleDistance {
 	private String date = "";
 	private String endTime = "";
 	private String eventName = "";
+	String latitude = "";
+	String longitude = "";
+	int intDate = 0;
+	int intStartTime = 0;
 
 	public GreatCircleDistance()
 	{
@@ -61,7 +65,22 @@ public class GreatCircleDistance {
 	{
 		return date;
 	}
+	
+	public void setIntegerStartTimeFromFile(String currentLine)
+	{
+		
+		if(currentLine.startsWith("DTSTART;TZID="))
+		{
+			intStartTime = Integer.parseInt(currentLine.substring(lastOccurenceOfT(currentLine), currentLine.length()));
+		}
 
+	}
+
+	public int getIntegerStartTimeFromFile()
+	{
+		return intStartTime;
+	}
+	
 	public void setEventNameFromFile(String currentLine)
 	{
 		if(currentLine.startsWith("SUMMARY"))
@@ -77,9 +96,38 @@ public class GreatCircleDistance {
 		return eventName;
 	}
 	
+	public void setLatitudeFromFile(String currentLine)
+	{
+		if(currentLine.startsWith("GEO"))
+		{
+			int index = currentLine.indexOf(':');
+			latitude = currentLine.substring(index + 1, currentLine.indexOf(';'));
+		}
 
+	}
 	
+	public String getLatitudeFromFile()
+	{
+		return latitude;
+	}
 	
+	public void setLongitudeFromFile(String currentLine)
+	{
+		if(currentLine.startsWith("GEO"))
+		{
+			int index = currentLine.indexOf(';');
+			longitude = currentLine.substring(index + 1, currentLine.length());
+			
+		}
+
+	}
+	
+	public String getLongitudeFromFile()
+	{
+		return longitude;
+	}
+
+
 	//helper method to find the time of an event in a file
 	private int lastOccurenceOfT(String str)
 	{
@@ -98,16 +146,20 @@ public class GreatCircleDistance {
 
 
 	// parameters to be used (String event1, String event2, String lat1, String lon1, String lat2, String lon2)
-	public static String CircleDistance()
+	public String CircleDistance(String event1, String event2, String lat1, String lon1, String lat2, String lon2)
 	{
+
 		// These are set to test method. Move variables to parameter to use properly
-		String event1, event2, lat1, lon1, lat2, lon2;
-		event1 = "Test Day";
-		event2 = "Family Dinner";
-		lat1 = "12.123456";
-		lon1 = "-12.123456";
-		lat2 = "65.654321";
-		lon2 = "-65.654321";
+//		String event1, event2, lat1, lon1, lat2, lon2;
+//		event1 = "Test Day";
+//		event2 = "Family Dinner";
+//		lat1 = "12.123456";
+//		lon1 = "-12.123456";
+//		lat2 = "65.654321";
+//		lon2 = "-65.654321";
+		
+		if(!lat1.equals("") && !lat2.equals("") && !lon1.equals("") && !lon2.equals(""))
+		{	
 
 		// Convert latitude and longitude to radians
 		double x1 = Math.toRadians(Double.parseDouble(lat1));
@@ -132,7 +184,16 @@ public class GreatCircleDistance {
 				event1 + " is " + miles + " miles away from " + event2 + ".";
 
 		return comment;
+		}
+		else
+		{
+			return "greatest circle distance cannot be computed between " + event1 + " and " + event2;
+		}
 	}
 
+		
 
 }
+
+
+

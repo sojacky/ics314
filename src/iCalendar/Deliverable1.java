@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -19,10 +20,19 @@ public class Deliverable1 {
 
 		File file;
 		icsFileFieldsCreator fields = new icsFileFieldsCreator();
-		GreatCircleDistance gcd = new GreatCircleDistance();
-		Scanner scan = new Scanner(System.in);
+		//to be used in comparator class for accessing methods
+		GreatCircleDistance gcd1 = new GreatCircleDistance();
 		UserInterface prompt = new UserInterface();
-		PriorityQueue<Integer> pq1 = new PriorityQueue<Integer>();
+		Comparator<GCDNode> comparator = new FileStartTimeComparator();
+		//for displaying the event names and times
+		PriorityQueue<iCalendar.GCDNode> pq1 = new PriorityQueue<GCDNode>(10, comparator);
+		//for calculating greatest circle distance
+		PriorityQueue<iCalendar.GCDNode> pq2 = new PriorityQueue<GCDNode>(10, comparator);
+		//for removing events from queue without geographic positions
+		PriorityQueue<iCalendar.GCDNode> pq3 = new PriorityQueue<GCDNode>(10, comparator);
+		
+
+
 		String title = "";
 		String startDate = "";
 		String endDate = "";
@@ -171,13 +181,13 @@ public class Deliverable1 {
 		//path to folders where .ics files are located
 		File folder = new File(folderPath);
 		File[] listOfFiles = folder.listFiles();
-		ArrayList<File> filesOnAGivenDay = new ArrayList<File>();
-		int counter = 0;
+
 
 		//loop to find all .ics files in a folder
 		for (int i = 0; i < listOfFiles.length; i++)
 		{
 			File fileFromList = listOfFiles[i];
+			GreatCircleDistance gcd = new GreatCircleDistance();
 			if (fileFromList.isFile() && fileFromList.getName().endsWith(".ics")) 
 			{
 				//read files
@@ -186,50 +196,102 @@ public class Deliverable1 {
 					String currentLine;
 					while ((currentLine = reader.readLine()) != null) 
 					{	
+
 						//Set required fields for each file for GCD
 						gcd.setDateFromFile(currentLine);
 						gcd.setStartTimeFromFile(currentLine);
 						gcd.setEndTimeFromFile(currentLine);
 						gcd.setEventNameFromFile(currentLine);
-					}
-					//					System.out.println("date = " +gcd.getDateFromFile());
-					//					System.out.println("startTime = " + gcd.getStartTimeFromFile());
-					//					System.out.println("endTime = " + gcd.getEndTimeFromFile());
-					//					System.out.println("Event name =" + gcd.getEventNameFromFile());
+						gcd.setLatitudeFromFile(currentLine);
+						gcd.setLongitudeFromFile(currentLine);
+						gcd.setIntegerStartTimeFromFile(currentLine);
 
-					//add files that equal given day to ArrayList
+
+					}
+
+					//add files that equal given day to priorityQueue based on start date
 					if(gcd.getDateFromFile().equals(gcdDate))
 					{
+						//put all required fields for GCD into a node and store node according to start time
+						GCDNode gcdNode = new GCDNode(fileFromList,gcd.getStartTimeFromFile(), gcd.getDateFromFile(), gcd.getEndTimeFromFile(),
+								gcd.getEventNameFromFile(), gcd.getLatitudeFromFile(), gcd.getLongitudeFromFile(), gcd.getIntegerStartTimeFromFile());
+
+						pq1.add(gcdNode);
+						pq2.add(gcdNode);
 						
-						Integer date = Integer.parseInt(gcd.getStartTimeFromFile());
-						pq1.offer(date);
-						counter++;
-						System.out.println("counter = " + counter);
+
 					}
 				} 
 				catch (FileNotFoundException e) 
 				{
+					System.out.println("The path is incorrect");
 					e.printStackTrace();
 				} 
 				catch (IOException e)
 				{
+					System.out.println("The path is incorrect");
 					e.printStackTrace();
 				}
 			}
 		}	
-        //printing contents of queue
-		System.out.println("Queue size = " + pq1.size());
+
+		//printing contents of queue
 		int queueSize = pq1.size();
 		for(int j = 0; j < queueSize; j++ )
 		{
-			System.out.println(pq1.poll());
+			System.out.println(pq1.peek().getEventName() + " occurs from " + pq1.peek().getStartTime() + " to " + pq1.poll().getEndTime() );
 		}
+		System.out.println();
+
+		//remove elements with no geographic positions
+		for(int j = 0; j < queueSize; j++ )
+		{
+			GCDNode event = pq2.poll();
+			if(!event.getLatitude().equals("") && !event.getLongitude().equals(""))
+			{		
+				pq3.add(event);
+			}
+			else
+			{
+				System.out.println("Cannot include " + event.getEventName() + " in greatest circle distance");
+			}
+		}
+		System.out.println();
+		
+		//calculate circle distance
+		queueSize = pq3.size();
+		for(int j = 0; j < queueSize-1; j++ )
+		{
+			GCDNode event1 = pq3.poll();
+			GCDNode event2 = pq3.peek();
+			System.out.println(gcd1.CircleDistance(event1.getEventName(), event2.getEventName() , event1.getLatitude(), event1.getLongitude(), 
+					event2.getLatitude(), event2.getLongitude()));
+
+
+		}
+
+
+
+
 	}
 }
 
-class fileStartTimeQueue implements Comparator<Integer> {
-	 
-	public int compare(Integer one, Integer two) {
-		return two - one;
+class FileStartTimeComparator implements Comparator<GCDNode> {
+
+
+	@Override
+	public int compare(GCDNode gcd1, GCDNode gcd2) {
+
+		if(gcd1.getIntStartTime() < gcd2.getIntStartTime())
+		{
+			return -1;
+		}
+
+		if(gcd1.getIntStartTime() > gcd2.getIntStartTime())
+		{
+			return 1;
+		}
+
+		return 0;
 	}
 }
