@@ -103,7 +103,7 @@ public class icsFileFieldsCreator {
 	//set comment
 	public String setComments()
 	{
-	  return null;//"COMMENT:" + GreatCircleDistance.CircleDistance(beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType);
+	  return "COMMENT:" + GreatCircleDistance.CircleDistance();
 	}
 
 
