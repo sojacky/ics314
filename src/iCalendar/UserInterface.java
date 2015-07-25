@@ -1,11 +1,13 @@
 package iCalendar;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class UserInterface {
 
 	InputValidator inputCheck = new InputValidator();
 	Scanner scan = new Scanner(System.in);
+	
 
 	public UserInterface()
 	{
@@ -178,6 +180,14 @@ public class UserInterface {
 	{
 		System.out.println("Please enter a path to folder containing .ics files");
 		String folderPath = scan.nextLine();
+		File file = new File(folderPath);
+		while(!file.isDirectory())
+		{
+			System.out.print("Invalid path, ");
+			System.out.println("Please enter a path to folder containing .ics files");
+			folderPath = scan.nextLine();
+			file = new File(folderPath);
+		}
 		return folderPath;
 	}
 

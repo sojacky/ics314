@@ -50,7 +50,7 @@ public class Deliverable1 {
 		/*
 		 * All THE USER INTERFACE PROMPTS
 		 */
-		/*
+		
 		//prompt user for title and set fileName
 		title = prompt.titlePrompt();
 
@@ -85,7 +85,7 @@ public class Deliverable1 {
 			latitude = prompt.latitudinalPrompt();
 			longitude = prompt.longitudinalPrompt();
 		}
-		 */
+		 
 		//prompt for calculating great circle distance
 		if(prompt.enterGreatCircleDistance())
 		{
@@ -95,15 +95,10 @@ public class Deliverable1 {
 
 		}
 
-
-
-
-
-
 		/*
 		 * WRITE ALL FIELDS TO FILE
 		 */
-		/*
+		
 		try {
 			fields.setFileName(title);
 			file = new File(fields.getFileName());
@@ -158,20 +153,20 @@ public class Deliverable1 {
 			}
 
 			//To be determined. Needs list of events before knowing where to add this.
-			bufferedWriter.write(fields.setComments());
+//			bufferedWriter.write(fields.setComments());
 			bufferedWriter.newLine();
 
 			bufferedWriter.write(fields.getEndEventType());
 			bufferedWriter.newLine();
 			bufferedWriter.write(fields.getEndCalendarType());
 			bufferedWriter.close();
-			scan.close();
+			
 
 		} catch (IOException e) 
 		{
 			e.printStackTrace();	
 		}
-		 */
+		 
 
 
 		/*
@@ -205,8 +200,6 @@ public class Deliverable1 {
 						gcd.setLatitudeFromFile(currentLine);
 						gcd.setLongitudeFromFile(currentLine);
 						gcd.setIntegerStartTimeFromFile(currentLine);
-
-
 					}
 
 					//add files that equal given day to priorityQueue based on start date
@@ -216,10 +209,9 @@ public class Deliverable1 {
 						GCDNode gcdNode = new GCDNode(fileFromList,gcd.getStartTimeFromFile(), gcd.getDateFromFile(), gcd.getEndTimeFromFile(),
 								gcd.getEventNameFromFile(), gcd.getLatitudeFromFile(), gcd.getLongitudeFromFile(), gcd.getIntegerStartTimeFromFile());
 
+						//pq1 is for printing contents, pq2 is for calculating gcd
 						pq1.add(gcdNode);
 						pq2.add(gcdNode);
-						
-
 					}
 				} 
 				catch (FileNotFoundException e) 
@@ -266,18 +258,11 @@ public class Deliverable1 {
 			GCDNode event2 = pq3.peek();
 			System.out.println(gcd1.CircleDistance(event1.getEventName(), event2.getEventName() , event1.getLatitude(), event1.getLongitude(), 
 					event2.getLatitude(), event2.getLongitude()));
-
-
 		}
-
-
-
-
 	}
 }
 
 class FileStartTimeComparator implements Comparator<GCDNode> {
-
 
 	@Override
 	public int compare(GCDNode gcd1, GCDNode gcd2) {
