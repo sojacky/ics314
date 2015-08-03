@@ -1,5 +1,11 @@
 package iCalendar;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,6 +22,7 @@ public class icsFileFieldsCreator {
 	private String endCalendarType = "END:VCALENDAR";
 	private String endEventType = "END:VEVENT";
 	String summary = "";
+	String comment = "";
 
 
 	public icsFileFieldsCreator(){};
@@ -30,8 +37,8 @@ public class icsFileFieldsCreator {
 		UID = "UID:" + date + "@mpsommer";
 		return UID;
 	}
-	
-	
+
+
 
 	//Set the date stamp
 	public String setDateStampString()
@@ -65,11 +72,11 @@ public class icsFileFieldsCreator {
 	//set title
 	public String setSummaryString(String title)
 	{
-		
+
 		summary = "SUMMARY:" + title;
 		return summary;
 	}
-	
+
 
 	//set location
 	public String setLocationString(String location)
@@ -99,13 +106,17 @@ public class icsFileFieldsCreator {
 	{
 		return "GEO:" + latitude + ";" + longitude;
 	}
-	
-	//set comment
-	public String setComments()
-	{
-	  return null;//"COMMENT:" + GreatCircleDistance.CircleDistance(beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType, beginCalendarType);
+
+
+
+
+	public String getComment() {
+		return comment;
 	}
 
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
 	public void setFileName(String fileName)
 	{
@@ -194,7 +205,7 @@ public class icsFileFieldsCreator {
 			int timeInteger = Integer.parseInt(time.substring(0, 2));
 			timeInteger = timeInteger + 12;
 			time = Integer.toString(timeInteger) + time.substring(3, 5); 
-			
+
 		}
 
 		return time;

@@ -30,7 +30,7 @@ public class Deliverable1 {
 		PriorityQueue<iCalendar.GCDNode> pq2 = new PriorityQueue<GCDNode>(10, comparator);
 		//for removing events from queue without geographic positions
 		PriorityQueue<iCalendar.GCDNode> pq3 = new PriorityQueue<GCDNode>(10, comparator);
-		
+
 
 
 		String title = "";
@@ -46,46 +46,47 @@ public class Deliverable1 {
 		boolean position = false;
 		String gcdDate = "";
 		String folderPath = "";
+		BufferedReader reader;
 
 		/*
 		 * All THE USER INTERFACE PROMPTS
 		 */
-		
-		//prompt user for title and set fileName
-		title = prompt.titlePrompt();
+		/*
+				//prompt user for title and set fileName
+				title = prompt.titlePrompt();
 
-		//prompt user for start date
-		startDate = prompt.startDatePrompt();
+				//prompt user for start date
+				startDate = prompt.startDatePrompt();
 
-		//prompt user for end date
-		endDate = prompt.endDatePrompt();
+				//prompt user for end date
+				endDate = prompt.endDatePrompt();
 
-		//prompt user for start time
-		startTime = prompt.startTimePrompt();	
+				//prompt user for start time
+				startTime = prompt.startTimePrompt();	
 
-		//prompt user for end time
-		endTime = prompt.endTimePrompt();
+				//prompt user for end time
+				endTime = prompt.endTimePrompt();
 
-		//prompt user for time zone
-		if(prompt.enterTimeZone())
-		{
-			timeZone = prompt.timeZonePrompt(); 
-		}
+				//prompt user for time zone
+				if(prompt.enterTimeZone())
+				{
+					timeZone = prompt.timeZonePrompt(); 
+				}
 
-		//location
-		location = prompt.locationPrompt();
+				//location
+				location = prompt.locationPrompt();
 
-		//classification
-		classification = prompt.classificationPrompt();
+				//classification
+				classification = prompt.classificationPrompt();
 
-		//geographic position
-		position = prompt.enterGeographicPosition();
-		if(position)
-		{
-			latitude = prompt.latitudinalPrompt();
-			longitude = prompt.longitudinalPrompt();
-		}
-		 
+				//geographic position
+				position = prompt.enterGeographicPosition();
+				if(position)
+				{
+					latitude = prompt.latitudinalPrompt();
+					longitude = prompt.longitudinalPrompt();
+				}
+		 */		 
 		//prompt for calculating great circle distance
 		if(prompt.enterGreatCircleDistance())
 		{
@@ -98,79 +99,79 @@ public class Deliverable1 {
 		/*
 		 * WRITE ALL FIELDS TO FILE
 		 */
-		
-		try {
-			fields.setFileName(title);
-			file = new File(fields.getFileName());
-			file.createNewFile();
-			FileWriter fileWriter = new FileWriter(fields.getFileName());
 
-			//Writing input to file
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			bufferedWriter.write(fields.getBeginCalendarType());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.getVersion());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.getCalScale());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.setTZIDString(timeZone));
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.getBeginEventType());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.setUIDString());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.setDateStampString());
-			bufferedWriter.newLine();
+		/*				try {
+					fields.setFileName(title);
+//					file = new File(fields.getFileName());
+//					file.createNewFile();
+					FileWriter fileWriter = new FileWriter(fields.getFileName());
 
-			//write start date and time to file
-			bufferedWriter.write(fields.setStartDateString(startDate, startTime, timeZone));
-			bufferedWriter.newLine();
+					//Writing input to file
+					BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+					bufferedWriter.write(fields.getBeginCalendarType());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.getVersion());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.getCalScale());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.setTZIDString(timeZone));
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.getBeginEventType());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.setUIDString());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.setDateStampString());
+					bufferedWriter.newLine();
 
-			//write end date and time to file
-			bufferedWriter.write(fields.setEndDateString(endDate, endTime, timeZone));
-			bufferedWriter.newLine();
+					//write start date and time to file
+					bufferedWriter.write(fields.setStartDateString(startDate, startTime, timeZone));
+					bufferedWriter.newLine();
 
-			//write summary field
-			bufferedWriter.write(fields.setSummaryString(title));
-			bufferedWriter.newLine();
+					//write end date and time to file
+					bufferedWriter.write(fields.setEndDateString(endDate, endTime, timeZone));
+					bufferedWriter.newLine();
 
-			//write location to file
-			bufferedWriter.write(fields.setLocationString(location));
-			bufferedWriter.newLine();	
+					//write summary field
+					bufferedWriter.write(fields.setSummaryString(title));
+					bufferedWriter.newLine();
 
-			//classification
-			if(!prompt.classificationEqualsNA(classification))
-			{
-				bufferedWriter.write(fields.setClassification(classification));
-				bufferedWriter.newLine();	
-			}
+					//write location to file
+					bufferedWriter.write(fields.setLocationString(location));
+					bufferedWriter.newLine();	
 
-			//geographic position
-			if(position)
-			{
-				bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
-				bufferedWriter.newLine();
-			}
+					//classification
+					if(!prompt.classificationEqualsNA(classification))
+					{
+						bufferedWriter.write(fields.setClassification(classification));
+						bufferedWriter.newLine();	
+					}
 
-			//To be determined. Needs list of events before knowing where to add this.
-//			bufferedWriter.write(fields.setComments());
-			bufferedWriter.newLine();
+					//geographic position
+					if(position)
+					{
+						bufferedWriter.write(fields.setGeographicPosition(latitude, longitude));
+						bufferedWriter.newLine();
+					}
 
-			bufferedWriter.write(fields.getEndEventType());
-			bufferedWriter.newLine();
-			bufferedWriter.write(fields.getEndCalendarType());
-			bufferedWriter.close();
-			
+					//To be determined. Needs list of events before knowing where to add this.
+		//			bufferedWriter.write(fields.setComment());
+		//			bufferedWriter.newLine();
 
-		} catch (IOException e) 
-		{
-			e.printStackTrace();	
-		}
-		 
+					bufferedWriter.write(fields.getEndEventType());
+					bufferedWriter.newLine();
+					bufferedWriter.write(fields.getEndCalendarType());
+					bufferedWriter.close();
 
+
+				} catch (IOException e) 
+				{
+					e.printStackTrace();	
+				}
+
+		 */	
 
 		/*
-		 * Read From file
+		 * Read From file for GCD
 		 */
 
 		//path to folders where .ics files are located
@@ -186,8 +187,10 @@ public class Deliverable1 {
 			if (fileFromList.isFile() && fileFromList.getName().endsWith(".ics")) 
 			{
 				//read files
-				try(BufferedReader reader = new BufferedReader(new FileReader(fileFromList)))
+				try
 				{
+					reader = new BufferedReader(new FileReader(fileFromList));
+
 					String currentLine;
 					while ((currentLine = reader.readLine()) != null) 
 					{	
@@ -201,6 +204,8 @@ public class Deliverable1 {
 						gcd.setLongitudeFromFile(currentLine);
 						gcd.setIntegerStartTimeFromFile(currentLine);
 					}
+
+					reader.close();
 
 					//add files that equal given day to priorityQueue based on start date
 					if(gcd.getDateFromFile().equals(gcdDate))
@@ -249,16 +254,73 @@ public class Deliverable1 {
 			}
 		}
 		System.out.println();
-		
+
+		FileWriter fileWriter;
+		BufferedWriter bufferedWriter;
+
 		//calculate circle distance
 		queueSize = pq3.size();
 		for(int j = 0; j < queueSize-1; j++ )
 		{
-			GCDNode event1 = pq3.poll();
-			GCDNode event2 = pq3.peek();
-			System.out.println(gcd1.CircleDistance(event1.getEventName(), event2.getEventName() , event1.getLatitude(), event1.getLongitude(), 
-					event2.getLatitude(), event2.getLongitude()));
+			//obtain file to write comment field to 
+			try {
+
+				GCDNode event1 = pq3.poll();
+				GCDNode event2 = pq3.peek();
+				if(gcd1.CircleDistance(event1.getEventName(), event2.getEventName() , event1.getLatitude(), event1.getLongitude(), 
+						event2.getLatitude(), event2.getLongitude()))
+				{
+					//comment is set in CircleDestance()
+					gcd1.commentDisplay(gcd1.getComment());
+
+
+					ArrayList<String> fileList = new ArrayList<String>();
+					String tmp;
+					reader = new BufferedReader(new FileReader(event1.getFile()));
+					boolean shouldWriteComment = true;
+					//add contents of file to arrayList
+					while ((tmp = reader.readLine()) != null)
+					{
+						//if the event file is already in file but needs to be updated
+						if(tmp.startsWith("COMMENT"))
+						{
+							fileList.add(gcd1.getComment());
+							shouldWriteComment = false;
+						}
+						else
+						{
+							//adds comment field to the arraylist right before the end VEVENT
+							if(tmp.equals("END:VEVENT") && shouldWriteComment)
+							{
+								fileList.add(gcd1.getComment());
+							}
+							fileList.add(tmp);
+						}
+					}
+
+					reader.close();
+
+					//write the contents of the arrayList back to file
+					fileWriter = new FileWriter(event1.getFile());
+					bufferedWriter = new BufferedWriter(fileWriter);
+					for (int i = 0; i < fileList.size(); i++)
+					{
+						bufferedWriter.write(fileList.get(i));
+						bufferedWriter.newLine();
+					}
+					bufferedWriter.close();
+
+				}
+				else
+				{
+					gcd1.cannotComputeGCDDisplay(event1.getEventName(), event2.getEventName());
+				}
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
 	}
 }
 

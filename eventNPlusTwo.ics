@@ -5,14 +5,13 @@ BEGIN:VTIMEZONE
 TZID:Pacific/Honolulu
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:2015072041107513@mpsommer
-DTSTAMP:201507204
-DTSTART;TZID=Pacific/Honolulu:20150820T100000
-DTEND;TZID=Pacific/Honolulu:20150820T103000
+UID:2015082142108215@mpsommer
+DTSTAMP:201508214
+DTSTART;TZID=Pacific/Honolulu:20150825T100000
+DTEND;TZID=Pacific/Honolulu:20150825T103000
 SUMMARY:eventNPlusTwo
-LOCATION:homw
-CLASS:public
-GEO:+15.000000;+15.000000
-COMMENT:Test Day is 6554.92 kilometers away from Family Dinner. Test Day is 4073.04 miles away from Family Dinner.
+LOCATION:home
+GEO:+15.000200;+15.000200
+COMMENT:eventNPlusTwo is 0.01 kilometers away from eventNPlusThree. eventNPlusTwo is 0.01 miles away from eventNPlusThree.
 END:VEVENT
 END:VCALENDAR
