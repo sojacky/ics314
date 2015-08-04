@@ -50,9 +50,8 @@ public class Deliverable1 {
 		boolean check1 = true;
 		boolean check2 = true;
 
-
+//prompt.printTimeZoneIDs();
 		boolean shouldKeepCreatingEvents = false;
-
 		//prompt user to see if the want to create an event
 		if(prompt.createEventPrompt())
 		{
