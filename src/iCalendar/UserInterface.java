@@ -13,7 +13,50 @@ public class UserInterface {
 	{
 
 	}
+	
+	public boolean createEventPrompt()
+	{
+		boolean position = false;
+		String decision = "";
 
+		System.out.println("Would you like to create an event? type yes or no");
+		decision = scan.nextLine();
+
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
+		{
+			System.out.print("Invalid input. ");	
+			System.out.println("Would you like to create an event? type yes or no");
+			decision = scan.nextLine();
+		}
+
+		if(decision.equals("yes"))
+		{
+			position = true;
+		}
+		return position;
+	}
+
+	public boolean createAnotherEventPrompt()
+	{
+		boolean position = false;
+		String decision = "";
+
+		System.out.println("Would you like to create another event? type yes or no");
+		decision = scan.nextLine();
+
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
+		{
+			System.out.print("Invalid input. ");	
+			System.out.println("Would you like to create another event? type yes or no");
+			decision = scan.nextLine();
+		}
+
+		if(decision.equals("yes"))
+		{
+			position = true;
+		}
+		return position;
+	}
 	public String titlePrompt()
 	{
 		System.out.println("Please enter a title for your event");
@@ -246,6 +289,28 @@ public class UserInterface {
 		{
 			System.out.print("Invalid input. ");	
 			System.out.println("Would you like calculate the great cirlce distance for all events on a given date? type yes or no");
+			decision = scan.nextLine();
+		}
+
+		if(decision.equals("yes"))
+		{
+			result = true;
+		}
+		return result;
+		
+	}
+	
+	public boolean enterAnotherGreatCircleDistance()
+	{
+		boolean result = false;
+		String decision = "";
+		System.out.println("Would you like calculate the great cirlce distance for all events on a given date again? type yes or no");
+		decision = scan.nextLine();
+		
+		while(!decision.equalsIgnoreCase("no")  && !decision.equalsIgnoreCase("yes"))
+		{
+			System.out.print("Invalid input. ");	
+			System.out.println("Would you like calculate the great cirlce distance for all events on a given date again? type yes or no");
 			decision = scan.nextLine();
 		}
 
