@@ -163,23 +163,30 @@ public class GreatCircleDistance {
 		if(!lat1.equals("") && !lat2.equals("") && !lon1.equals("") && !lon2.equals(""))
 		{	
 
+		  // Earth's radius in kilometers
+		  final int Rkm = 6371;
+		  // Earth's radius in miles
+		  final int Rmi = 3959;
+		  
 			// Convert latitude and longitude to radians
-			double x1 = Math.toRadians(Double.parseDouble(lat1));
-			double y1 = Math.toRadians(Double.parseDouble(lon1));
-			double x2 = Math.toRadians(Double.parseDouble(lat2));
-			double y2 = Math.toRadians(Double.parseDouble(lon2));
+			double x1 = Double.parseDouble(lat1);
+			double y1 = Double.parseDouble(lon1);
+			double x2 = Double.parseDouble(lat2);
+			double y2 = Double.parseDouble(lon2);
+			double latDistance = Math.toRadians(x2 - x1);
+			double lonDistance = Math.toRadians(y2 - y1);
+			
+			// The central angle between the given points on a sphere
+			double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) + (Math.cos(Math.toRadians(x1)) * Math.cos(Math.toRadians(x2))) * (Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2));
+			
+			// The distance between two points (along a great circle of the sphere)
+			double c = 2 * Math.asin(Math.sqrt(a));
 
-			// Calculate Great Circle Distance in radians
-			double angle = Math.acos((Math.cos(x1) * Math.cos(x2)) + (Math.sin(x1) * Math.sin(x2)) * (Math.cos(y1 - y2)));
-
-			// Convert to degrees
-			angle = Math.toDegrees(angle);
-
-			// Get distance in kilometers. Rounds kilometers to 2 decimal places
-			double kilometers = (double) Math.round((angle * 111.32) * 100) / 100;
-
-			// Get distance in statute miles. Rounds miles to 2 decimal places
-			double miles =  (double) Math.round((kilometers * 0.621371) * 100) / 100;
+	     // Get distance in kilometers. Rounds kilometers to 2 decimal places
+			double kilometers = (double) Math.round((Rkm * c) * 100) / 100;
+			
+	     // Get distance in statute miles. Rounds miles to 2 decimal places
+			double miles = (double) Math.round((Rmi * c) * 100) / 100;
 
 			// Concatenate into one string for easy return
 			setComment("COMMENT:" + event1 + " is " + kilometers + " kilometers away from " + event2 + ". " +
