@@ -12,6 +12,6 @@ DTEND;TZID=Pacific/Honolulu:20150825T093000
 SUMMARY:eventNPlusOne
 LOCATION:home
 GEO:+15.000100;+15.000100
-COMMENT:eventNPlusOne is 0.01 kilometers away from eventNPlusTwo. eventNPlusOne is 0.01 miles away from eventNPlusTwo.
+COMMENT:eventNPlusOne is 0.02 kilometers away from eventNPlusTwo. eventNPlusOne is 0.01 miles away from eventNPlusTwo.
 END:VEVENT
 END:VCALENDAR

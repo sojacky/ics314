@@ -12,6 +12,6 @@ DTEND;TZID=Pacific/Honolulu:20150825T073000
 SUMMARY:eventNPlusThree
 LOCATION:home
 GEO:+14.999900;+14.999900
-COMMENT:eventNPlusThree is 0.01 kilometers away from eventN. eventNPlusThree is 0.01 miles away from eventN.
+COMMENT:eventNPlusThree is 0.02 kilometers away from eventN. eventNPlusThree is 0.01 miles away from eventN.
 END:VEVENT
 END:VCALENDAR
